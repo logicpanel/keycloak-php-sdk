@@ -20,7 +20,15 @@ $kcClient = new Keycloak\KeycloakClient(
     'https://my-keycloak-base-url.com'
 );
 ```
-
+Or use a admin user credentials.
+```php
+$kcClient = new Keycloak\KeycloakPasswordClient(
+    'my-realm',
+    'https://my-keycloak-base-url.com',
+    'username',
+    'password'
+);
+```
 Then you can pass the client to any of the APIs.
 
 ```php
