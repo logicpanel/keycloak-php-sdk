@@ -11,9 +11,7 @@
     "license": "MIT",
     "authors": [
         {
-            "name": "WebDev",
-            "email": "web.support@ac-systems.com",
-            "homepage": "https://ac-systems.be"
+            "name": "William Peralta"
         }
     ],
     "require": {
