@@ -17,7 +17,7 @@
         }
     ],
     "require": {
-        "php": "^7.3",
+        "php": ">=7.3",
         "ext-json": "*",
         "guzzlehttp/guzzle": "^5.3|^6.3",
         "league/oauth2-client": "^2.4"
