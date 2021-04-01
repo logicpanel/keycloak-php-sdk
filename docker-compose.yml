@@ -1,0 +1,20 @@
+version: '3.3'
+services:
+    web:
+        container_name: web
+        ports:
+            - '80:80'
+        volumes:
+            - './:/var/www/html:delegated'
+            - ~/.ssh/id_rsa:/var/cache/nginx/.ssh/id_rsa
+        environment:
+            - PHP_MEM_LIMIT=2048
+            - RUN_SCRIPTS=1
+            - ENABLE_XDEBUG=0
+            - PHP_TIMEZONE=Europe/Brussels
+            - ERRORS=1
+            - SKIP_COMPOSER=1
+            - SKIP_CHOWN=1
+            - APP_ENV=dev
+            - DEPLOY_ENVIRONMENT=development
+        image: 'acweblabs/nginx-php7.3-fpm:latest'

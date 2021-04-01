@@ -1,0 +1,26 @@
+image: acweblabs/nginx-php7.3-fpm
+
+definitions:
+  mergeFromMaster: &mergeFromMaster
+    name: Merging master in current branch
+    script:
+      - git config remote.origin.fetch "+refs/heads/*:refs/remotes/origin/*"
+      - git config user.email "webdev.administration@ac-systems.com"
+      - git config user.name "WebDev Bot"
+      - git remote set-url origin ${BITBUCKET_GIT_SSH_ORIGIN}
+      - git remote update
+      - git fetch --all
+      - git merge --no-ff --no-edit -m "Merge origin/master [skip ci]" origin/master
+      - git push --all
+  runTests: &runTests
+    name: Running tests
+    script:
+      - curl -o composer.phar https://getcomposer.org/composer-stable.phar
+      - php -d memory_limit=-1 composer.phar install -v --no-ansi --no-interaction --no-progress --no-plugins
+      - make tests
+
+pipelines:
+  pull-requests:
+    '**':
+      - step: *mergeFromMaster
+      - step: *runTests
