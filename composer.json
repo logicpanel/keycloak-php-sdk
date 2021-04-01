@@ -1,5 +1,5 @@
 {
-    "name": "acsystems/keycloak-php-sdk",
+    "name": "logicpanel/keycloak-php-sdk",
     "description": "PHP wrapper for the KeyCloak admin API",
     "keywords": [
         "keycloak",
