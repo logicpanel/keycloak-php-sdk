@@ -42,6 +42,7 @@ class KeycloakPasswordClient extends KeycloakClient
     ) {
         $this->guzzleClient = new GuzzleClient(['base_uri' => "$url/auth/admin/realms/$realm/"]);
         $this->url = $url;
+        $this->realm = $realm;
         $this->username = $username;
         $this->password = $password;
     }
@@ -108,7 +109,7 @@ class KeycloakPasswordClient extends KeycloakClient
             'password' => $this->password,
             'grant_type' => 'password'
         ];
-        $response = $guzzleClient->request("POST", "/auth/realms/master/protocol/openid-connect/token", compact("headers", "form_params"));
+        $response = $guzzleClient->request("POST", "/auth/realms/{$this->realm}/protocol/openid-connect/token", compact("headers", "form_params"));
 
         $object = json_decode((string) $response->getBody());
 
